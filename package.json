@@ -5,15 +5,19 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "precompress": "{{ executes BEFORE the `compress` script }}",
-    "compress": "{{ run command to compress files }}",
-    "postcompress": "{{ executes AFTER `compress` script }}"
+    "start": "node index.js",
+    "serve": "",
+    "build": ""
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ROEL2407/Project_Tech_HVA.git"
   },
-  "keywords": [],
+  "keywords": [
+    "\"Beer\"",
+    "\"Games\"",
+    "\"Match\""
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
