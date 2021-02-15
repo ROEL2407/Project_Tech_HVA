@@ -17,7 +17,7 @@ git pull
 ```
 npm start
 ```
-(Note: you need to have Ubuntu running on your computer or desktop)
+(je moet ubuntu op je computer of laptop hebben om deze commands te runnen in de terminal)
 ## Opdracht
 De opdracht voor dit project is het maken van een matching applicatie/website. Hierbij moeten wij door middel van het brainstormen met [job stories]('https://github.com/ROEL2407/Project_Tech_HVA/wiki/Project-Tech') enzovoort op een feature komen die wij gaan uitwerken.
 ## Mijn feature
