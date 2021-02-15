@@ -1,10 +1,10 @@
 # Project_Tech_HVA
 Mijn repo voor project tech waarbij ik een wiki bijhoudt en mijn opdrachten neerzet.
 
-## Inhoudsopgave:<br />
+## Table of contents:<br />
 [Opdracht](##-Opdracht)<br />
 [Mijn feature](##-Mijn-feature)<br />
-  [Hoe werkt het?](##-Hoe-werkt-het?)<br />
+  [License](##-License)<br />
 ## Opdracht
 De opdracht voor dit project is het maken van een matching applicatie/website. Hierbij moeten wij door middel van het brainstormen met [job stories]('https://github.com/ROEL2407/Project_Tech_HVA/wiki/Project-Tech') enzovoort op een feature komen die wij gaan uitwerken.
 ## Mijn feature
@@ -14,3 +14,5 @@ Mijn feature is een set ingebouwde vragen die opkomen als mensen net gematched z
   
   nadat er een match is ontstaan kunnen beide personen een vraag selecteren. Dit is eenmalig dus als persoon 1 een vraag uitgekozen heeft, kan persoon 2 geen vraag uitkiezen.
   Beide personen beantwoorden de vraag, waarna het echte gesprek begint.
+## License
+Usage is provided under the [MIT License](https://github.com/git/git-scm.com/blob/master/MIT-LICENSE.txt). See LICENSE for the full details.
