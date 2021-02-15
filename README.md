@@ -8,9 +8,15 @@ Mijn repo voor project tech waarbij ik een wiki bijhoudt en mijn opdrachten neer
   [License](##-License)<br />
   
 ## Installeren
+```
 git clone https://github.com/ROEL2407/Project_Tech_HVA.git
+```
+```
 git pull
+```
+```
 npm start
+```
 (Note: you need to have Ubuntu running on your computer or desktop)
 ## Opdracht
 De opdracht voor dit project is het maken van een matching applicatie/website. Hierbij moeten wij door middel van het brainstormen met [job stories]('https://github.com/ROEL2407/Project_Tech_HVA/wiki/Project-Tech') enzovoort op een feature komen die wij gaan uitwerken.
