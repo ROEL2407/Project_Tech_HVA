@@ -10,8 +10,15 @@ const movies = [
   {title: "film4", genre: "banaan", jaartal: 2020},
 ]
 
+const vraagjes = [
+  {"id": "1", "vraag": "waarom zijn bananen krom", "ant1": "abc", "ant2": "def"},
+  {"id": "2", "vraag": "waarom zijn bananen kromehhh", "ant1": "abc", "ant2": "def"},
+  {"id": "3", "vraag": " krom", "ant1": "abc", "ant2": "def"},
+  {"id": "4", "vraag": "waarom zijn bananen ", "ant1": "abc", "ant2": "def"}
+]
+
 app.get('/', (req, res) => {
-  res.render('home', {})
+  res.render('home', {vraagjes, vraag})
 });
 
 app.get('/about', (req, res) => {
