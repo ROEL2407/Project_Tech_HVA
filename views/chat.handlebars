@@ -14,34 +14,26 @@
             </a>
             <section id="questions">
                 <p>Pick a question you like to answer with your match:</p>
-                <section class="quest" id="q1">
-                    <p>{{ vraagjes.1.vraag }}</p>
+                {{#each RandVraag }}
+                <section class="quest" id="vr_id{{this.id}}">
+                    <p>{{ this.vraag }}</p>
                 </section>
-                <section class="quest" id="q2">
-                    <p>question</p>
-                </section>
-                <section class="quest" id="q3">
-                    <p>question</p>
-                </section>
-                <section class="quest" id="q4">
-                    <p>question</p>
-                </section>
-                <section class="quest" id="q5">
-                    <p>question</p>
-                </section>
+                {{/each}}
             </section>
-            <section id="answers">
+                {{#each RandVraag }}
+            <section class="answers invisible">
                 <h2>question</h2>
-                <form action="post">
+                <form action="post" id="ant_id{{this.id}}">
                     <fieldset>
-                        <label for="ans1">Answer1</label><input type="radio" name="answer1" id="ans1">
+                        <label for="ans1">{{this.ant1}}</label><input type="radio" name="answer1" id="ans1">
                     </fieldset>
                     <fieldset>
-                        <label for="ans2">Answer2</label><input type="radio" name="answer1" id="ans2">
+                        <label for="ans2">{{this.ant2}}</label><input type="radio" name="answer1" id="ans2">
                     </fieldset>
                     <input type="submit" value="Confirm answer" id="sendAnswer">
                 </form>
             </section>
+                {{/each}}
         </section>
     </section>
 </main>

@@ -129,7 +129,7 @@ main #chat #msg2::before { /*https://codingislove.com/css-speech-bubbles/*/
     margin-right: 0.25em;
 }
 
-#popUp #questions, #popUp #answers {
+#popUp #questions, #popUp .answers {
     text-align: center;
 }
 
@@ -144,11 +144,11 @@ main #chat #msg2::before { /*https://codingislove.com/css-speech-bubbles/*/
     border-bottom: 1px solid black;
 }
 
-#popUp #answers {
+.invisible {
     display: none;
 }
 
-#popUp #answers form fieldset {
+#popUp .answers form fieldset {
     border: none;
     display: flex;
     flex-direction: column;
@@ -156,11 +156,11 @@ main #chat #msg2::before { /*https://codingislove.com/css-speech-bubbles/*/
     align-items: center;
 }
 
-#popUp #answers form fieldset, #popUp #answers form #sendAnswer {
+#popUp .answers form fieldset, #popUp .answers form #sendAnswer {
     margin-top: 1em;
 }
 
-#popUp #answers form #sendAnswer {
+#popUp .answers form #sendAnswer {
     padding: 0.5em;
     border-radius: 2em;
     border: 1px solid black;
