@@ -1,4 +1,3 @@
-<main>
     <section id="chat">
         <section id="result">
             <p>You answered answer1</p>
@@ -14,15 +13,15 @@
             </a>
             <section id="questions">
                 <p>Pick a question you like to answer with your match:</p>
-                {{#each RandVraag }}
+                {{#each randVraag }}
                 <section class="quest" id="vr_id{{this.id}}">
                     <p>{{ this.vraag }}</p>
                 </section>
                 {{/each}}
             </section>
-                {{#each RandVraag }}
+                {{#each randVraag }}
             <section class="answers invisible">
-                <h2>question</h2>
+                <h2>{{ this.vraag }}</h2>
                 <form action="post" id="ant_id{{this.id}}">
                     <fieldset>
                         <label for="ans1">{{this.ant1}}</label><input type="radio" name="answer1" id="ans1">
@@ -36,4 +35,3 @@
                 {{/each}}
         </section>
     </section>
-</main>

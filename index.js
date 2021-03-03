@@ -13,8 +13,8 @@ async function connectDB() {
   // Get URI from .env file
   const uri = process.env.DB_URI
   // make connection to db
-  const options = { UseUnifiedTopology: true };
-  const client = new MongoClient(uri, options)
+  const options = { useUnifiedTopology: true };
+  const client = new MongoClient(uri,options)
   await client.connect();
   db = await client.db(process.env.DB_NAME)
 }
@@ -28,34 +28,38 @@ connectDB()
   console.log(error)
 });
 
-const vragen = [
-  {id: 1, vraag: "Welke game ontwikkelaar vindt je beter?", ant1: "Ubisoft", ant2: "Activision"},
-  {id: 2, vraag: "In welke wereld zou je liever in willen leven?", ant1: "Pokemon", ant2: "Mario"},
-  {id: 3, vraag: "Wat zou jij liever doen op een zondagmorgen?", ant1: "Een paar draken de pan in hakken", ant2: "Je kd hard gaan boosten"},
-  {id: 4, vraag: "Welke soort game speel je liever?", ant1: "RPG's", ant2: "Shooters"},
-  {id: 5, vraag: "Als je samen met je vrienden gaat gamen, wat gebruik je dan om te communiceren?", ant1: "Parties (voor consoles) of Discord (voor pc)", ant2: "Skype"},
-  {id: 6, vraag: "Speel je liever singleplayer of multiplayer games?", ant1: "Singleplayer", ant2: "Multiplayer"},
-  {id: 7, vraag: "Zou jij in de gamewereld willen leven van de game die je als laatste gespeeld hebt?", ant1: "Ja, lijkt mij tof!", ant2: "Zeker niet"},
-  {id: 8, vraag: "Heb je wel eens gehuild om de storyline van een spel?", ant1: "Jazeker *sobbing*", ant2: "Nee *deal with it glasses*"},
-  {id: 9, vraag: "Gebruik je glitches en exploits om beter te worden?", ant1: "Misschien, ja dus", ant2: "Nee zoiets zou ik niet doen"},
-  {id: 10, vraag: "Zou jij 500.000,- euro aannemen als dat betekende dat je moest stoppen met gamen", ant1: "gimme gimme", ant2: "echt niet"}
-]
+/*
+async function getQuestions() {
+  var vragen = []
+  vragen = await db.collection('questions').find({}).toArray();
+}
+
+
+//picks 5 random questions from the database and displays it on the view
 const RandVraag = []
 var i;
 for (i = 0; i < 5; i++) {
 RandVraag.push(vragen[Math.floor(Math.random() * vragen.length)]);
 if(!vragen.includes(RandVraag)){
-  vragen.push(RandVraag);
+   vragen.push(RandVraag);
   }
 } 
+*/
+app.get('/', async (req, res) => {
+  var vragen = []
+  vragen = await db.collection('questions').find({}).toArray();
+  //picks 5 random questions from the database and displays it on the view
+  const randVraag = [];
+  var vraagHolder = "";
+  var i;
+  while (randVraag.length < 5) {
+    vraagHolder = (vragen[Math.floor(Math.random() * vragen.length)]); 
+    if(!randVraag.includes(vraagHolder)){
+      randVraag.push(vraagHolder);
+    }
+  }
 
-app.get('/', (req, res) => {
-  res.render('home', {})
-});
-
-app.get('/chat', (req, res) => {
-  res.render('chat', {title: "lijst van vragen", RandVraag})
-  console.log(RandVraag)
+  res.render('chat', {title: "lijst van vragen", randVraag})
 });
 
 app.get('/about', (req, res) => {
