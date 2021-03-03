@@ -1,14 +1,14 @@
 var clickvraag1 = document.querySelector(".quest:nth-of-type(1)");
-var clickvraag2 = document.querySelector("#vr_id{{this.id}}");
-var clickvraag3 = document.querySelector("#vr_id{{this.id}}");
-var clickvraag4 = document.querySelector("#vr_id{{this.id}}");
-var clickvraag5 = document.querySelector("#vr_id{{this.id}}");
+var clickvraag2 = document.querySelector(".quest:nth-of-type(2)");
+var clickvraag3 = document.querySelector(".quest:nth-of-type(3)");
+var clickvraag4 = document.querySelector(".quest:nth-of-type(4)");
+var clickvraag5 = document.querySelector(".quest:nth-of-type(5)");
 
-var clickAnt1 = document.querySelector("#ant_id{{this.id}}");
-var clickAnt2 = document.querySelector("#ant_id{{this.id}}");
-var clickAnt3 = document.querySelector("#ant_id{{this.id}}");
-var clickAnt4 = document.querySelector("#ant_id{{this.id}}");
-var clickAnt5 = document.querySelector("#ant_id{{this.id}}");
+var clickAnt1 = document.querySelector(".answers:nth-of-type(1)");
+var clickAnt2 = document.querySelector(".answers:nth-of-type(2)");
+var clickAnt3 = document.querySelector(".answers:nth-of-type(3)");
+var clickAnt4 = document.querySelector(".answers:nth-of-type(4)");
+var clickAnt5 = document.querySelector(".answers:nth-of-type(5)");
 
 var questions = document.querySelector("#questions");
 

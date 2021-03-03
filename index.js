@@ -3,13 +3,30 @@ const exphbs = require('express-handlebars');
 const {pick} = require('lodash');
 const app = express();
 const port = 3000;
+const dotenv = require('dotenv').config();
+const { MongoClient } = require('mongodb')
 app.use(express.static('static'));
 
-const movies = [
-  {title: "The Hulk", genre: "Action", jaartal: 1980},
-  {title: "film3", genre: "comedie", jaartal: 1990},
-  {title: "film4", genre: "banaan", jaartal: 2020},
-]
+let db = null;
+//function connectDB
+async function connectDB() {
+  // Get URI from .env file
+  const uri = process.env.DB_URI
+  // make connection to db
+  const options = { UseUnifiedTopology: true };
+  const client = new MongoClient(uri, options)
+  await client.connect();
+  db = await client.db(process.env.DB_NAME)
+}
+connectDB()
+.then(() => {
+  //if the connection was successfull, show this message
+  console.log("we have landed")
+})
+.catch ( error => {
+  //if the connection fails, send this message
+  console.log(error)
+});
 
 const vragen = [
   {id: 1, vraag: "Welke game ontwikkelaar vindt je beter?", ant1: "Ubisoft", ant2: "Activision"},
@@ -49,16 +66,12 @@ app.get('/login', (req, res) => {
   res.send('Hello login!')
 });
 
-//voorbeeld dynamic code v
-app.get('/movies', (req, res) => {
-  res.render('ListOfMovies', {title: "List of movies", movies})
-});
-app.use(function (req, res, next) {
-  res.status(404).send("Sorry this page doesn't excist, try another one")
+app.use(function (req, res) {
+  res.status(404).send("Sorry this page doesn't exist, try another one")
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}!`)
+  console.log(`localhost app listening on port ${port}!`)
 });
 
 app.engine('handlebars', exphbs());
