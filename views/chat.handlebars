@@ -1,7 +1,7 @@
     <section id="chat">
         <section id="result">
-            <p>You answered answer1</p>
-            <p>Name answered answer1</p>
+            <p>Jij antwoordde answer1</p>
+            <p>Maaike antwoordde answer1</p>
         </section>
         <section class="chat_msg" id="msg1"><p>Hey! hoe gaat het?</p></section>
         <section class="chat_msg" id="msg2"><p>Goed! en met jou?</p></section>
@@ -9,10 +9,10 @@
     <section id="popUpWrapper">
         <section id="popUp">
             <a href="#"><i class="fa fa-chevron-left"></i>
-                <p>Back to all matches</p>
+                <p>Terug naar matches</p>
             </a>
             <section id="questions">
-                <p>Pick a question you like to answer with your match:</p>
+                <p>Kies een vraag om samen met je match te beantwoorden:</p>
                 {{#each randVraag }}
                 <section class="quest" id="vr_id{{this.id}}">
                     <p>{{ this.vraag }}</p>
@@ -21,13 +21,13 @@
             </section>
                 {{#each randVraag }}
             <section class="answers invisible">
-                <h2>{{ this.vraag }}</h2>
+                <h3>{{ this.vraag }}</h3>
                 <form action="post" id="ant_id{{this.id}}">
                     <fieldset>
-                        <label for="ans1">{{this.ant1}}</label><input type="radio" name="answer1" id="ans1">
+                        <label><input type="radio" name="answer1" id="ans1">&nbsp;{{this.ant1}}</label>
                     </fieldset>
                     <fieldset>
-                        <label for="ans2">{{this.ant2}}</label><input type="radio" name="answer1" id="ans2">
+                        <label><input type="radio" name="answer1" id="ans2">&nbsp;{{this.ant2}}</label>
                     </fieldset>
                     <input type="submit" value="Confirm answer" id="sendAnswer">
                 </form>
