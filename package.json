@@ -29,7 +29,9 @@
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
     "handlebars": "^4.7.6",
+    "js-beautify": "^1.13.5",
     "mongodb": "^3.6.4",
+    "nodemon": "^2.0.7",
     "npm": "^7.6.0"
   },
   "devDependencies": {
