@@ -30,7 +30,7 @@ Mijn feature is een set ingebouwde vragen die opkomen als mensen net gematched z
   Beide personen beantwoorden de vraag, waarna het echte gesprek begint.
   
 ## Datebase schets
-![datamodel van mijn database](https://github.com/ROEL2407/Project_Tech_HVA/blob/master/images/datamodel.jpg)
+<img src="https://github.com/ROEL2407/Project_Tech_HVA/blob/master/images/datamodel.jpg" alt="Datamodel van mijn database" width="400">
 
 ## License
 Usage is provided under the [MIT License](https://github.com/git/git-scm.com/blob/master/MIT-LICENSE.txt). See LICENSE for the full details.
