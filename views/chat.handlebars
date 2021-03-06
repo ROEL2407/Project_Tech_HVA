@@ -18,16 +18,17 @@
                     <p>{{ this.vraag }}</p>
                 </section>
                 {{/each}}
+
             </section>
                 {{#each randVraag }}
             <section class="answers invisible">
                 <h3>{{ this.vraag }}</h3>
-                <form action="post" id="ant_id{{this.id}}">
+                <form method="POST" action="/" id="ant_id{{this.id}}">
                     <fieldset>
-                        <label><input type="radio" name="answer1" id="ans1">&nbsp;{{this.ant1}}</label>
+                        <label><input type="radio" name="answer" id="ans1" value="{{this.ant1}}">&nbsp;{{this.ant1}}</label>
                     </fieldset>
                     <fieldset>
-                        <label><input type="radio" name="answer1" id="ans2">&nbsp;{{this.ant2}}</label>
+                        <label><input type="radio" name="answer" id="ans2" value="{{this.ant2}}">&nbsp;{{this.ant2}}</label>
                     </fieldset>
                     <input type="submit" value="Confirm answer" id="sendAnswer">
                 </form>

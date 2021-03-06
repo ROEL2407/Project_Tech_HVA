@@ -2,9 +2,17 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const app = express();
 const port = 3000;
+const bodyParser = require('body-parser');
+const slug = require('slug');
 const dotenv = require('dotenv').config();
 const { MongoClient } = require('mongodb');
+
 app.use(express.static('static'));
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.engine('handlebars', exphbs());
+app.set("view engine", 'handlebars');
+
 
 let db = null;
 //function connectDB
@@ -27,7 +35,10 @@ connectDB()
   console.log(error);
 });
 
-
+const person = [
+  {"id": 14256, "naam": "Bert"},
+  {"id": 987643, "naam": "Maaike"}
+];
 
 
 app.get('/', async (req, res) => {
@@ -42,8 +53,14 @@ app.get('/', async (req, res) => {
       randVraag.push(vraagHolder);
     }
   }
-  
-  res.render('chat', {randVraag});
+
+  //pushes chosen question and answers sto the database
+  const questAndAnswer = {"id": "id", "person1": person[0].id, "ansPerson1": req.body.answer, "person2": person[1].id};
+  console.log(req.body);
+  await db.collection('matches').insertOne(questAndAnswer);
+
+
+  res.render('chat', {randVraag, questAndAnswer});
 });
 
 app.use(function (req, res) {
@@ -53,6 +70,3 @@ app.use(function (req, res) {
 app.listen(port, () => {
   console.log(`localhost app listening on port ${port}!`);
 });
-
-app.engine('handlebars', exphbs());
-app.set("view engine", 'handlebars');
