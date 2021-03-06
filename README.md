@@ -5,8 +5,8 @@ Mijn repo voor project tech waarbij ik een wiki bijhoudt en mijn opdrachten neer
 [Installeren](##-Installeren)<br />
 [Opdracht](##-Opdracht)<br />
 [Mijn feature](##-Mijn-feature)<br />
-[License](##-License)<br />
 [Datebase schets](##-Datebase-schets)<br />
+[License](##-License)<br />
   
 ## Installeren
 ```
