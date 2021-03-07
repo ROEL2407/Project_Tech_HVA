@@ -2,16 +2,11 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const app = express();
 const port = 3000;
-const bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
 const slug = require('slug');
 const dotenv = require('dotenv').config();
 const { MongoClient } = require('mongodb');
-
-app.use(express.static('static'));
-app.use(bodyParser.urlencoded({ extended: false }));
-
-app.engine('handlebars', exphbs());
-app.set("view engine", 'handlebars');
+app.use(express.json());
 
 
 let db = null;
@@ -41,26 +36,61 @@ const person = [
 ];
 
 
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(express.static('static'));
+
+app.engine('handlebars', exphbs());
+app.set("view engine", 'handlebars');
+
 app.get('/', async (req, res) => {
   var vragen = [];
+  //takes all the questions from the database and places them into the array vragen
   vragen = await db.collection('questions').find({}).toArray();
-  //picks 5 random questions from the database and displays it on the view
+  //picks 5 random questions from vragen
   const randVraag = [];
+  // vraagHolder is a holder for a single question to test if they are already in the new array randVraag
   var vraagHolder = "";
   while (randVraag.length < 5) {
     vraagHolder = (vragen[Math.floor(Math.random() * vragen.length)]); 
+    //if the question in vraagHolder isn't in the new array, push them to the array
     if(!randVraag.includes(vraagHolder)){
       randVraag.push(vraagHolder);
     }
   }
 
-  //pushes chosen question and answers sto the database
-  const questAndAnswer = {"id": "id", "person1": person[0].id, "ansPerson1": req.body.answer, "person2": person[1].id};
-  console.log(req.body);
-  await db.collection('matches').insertOne(questAndAnswer);
+
+  res.render('home', {randVraag});
+});
+
+app.post('/', async (req,res) => {
+  //pushes chosen answers to the database with the id's from the users
+  const questAndAnswer = {"person1": person[0].id, "ansPerson1": req.body.answer, "person2": person[1].id, "ansPerson2": req.body.answer};
+  console.log(req.body.answer);
+  await db.collection('matches').insertOne(questAndAnswer)
+  .then(function() { 
+    res.redirect('/chat');
+}).catch(function(error){
+    res.send(error);
+})
 
 
-  res.render('chat', {randVraag, questAndAnswer});
+  res.render('home', {questAndAnswer});
+});
+
+
+app.get('/chat', async (req, res) => {
+  var lastItem = await db.collection('matches').find().limit(1).sort({$natural:-1}).toArray();
+res.render('chat', {lastItem});
+});
+
+  app.get('/vragen', (req, res) => {
+  res.render('add', {layout: 'addlayout.handlebars'});
+});
+
+app.post('/vragen', async (req,res) => {
+  const Addvragen = {"vraag": req.body.vraag, "ant1": req.body.answer1, "ant2": req.body.answer2};
+  await db.collection('questions').insertOne(Addvragen);
+  res.render('add', {Addvragen, layout: 'addlayout.handlebars', Succesmessage: "Je vraag is aangemaakt!"})
 });
 
 app.use(function (req, res) {

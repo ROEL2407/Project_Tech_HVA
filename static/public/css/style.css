@@ -138,6 +138,7 @@ main #chat #msg2::before { /*https://codingislove.com/css-speech-bubbles/*/
     border-left: 1px solid black;
     border-right: 1px solid black;
     padding: 1em 0em;
+    cursor: pointer;
 }
 
 #popUp #questions .quest:last-of-type {
@@ -148,16 +149,21 @@ main #chat #msg2::before { /*https://codingislove.com/css-speech-bubbles/*/
     display: none;
 }
 
-#popUp .answers form fieldset {
-    border: none;
+#popUp .answers form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
+#popUp .answers form label {
+    cursor: pointer;
+    margin: 0.5em 0em;
+}
+
 #popUp .answers form fieldset, #popUp .answers form #sendAnswer {
     margin-top: 1em;
+    max-width: 11em;
 }
 
 #popUp .answers form #sendAnswer {
@@ -204,4 +210,42 @@ footer form #submitText {
     background-size: 30px;
     width: 30px;
     height: 30px;
+}
+#add_header, #add_footer {
+    height: 10%;
+}
+
+#add_header h1 {
+    font-size: 1.5em;
+    width: 75%;
+}
+
+#vraagh2 {
+    text-align: center;
+    margin: 1em 0em 0.5em 0em;
+}
+#vraagform {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#vraagform fieldset {
+    margin-top: 1em;
+    border: none;
+}
+
+#vraagform button {
+    border-radius: 2em;
+    border: 1px solid black;
+    margin-top: 01em;
+    padding: 0.5em 1.5em;
+    font-size: 1.25em;
+}
+
+#add_footer {
+    display: flex;
+    justify-content: center;
 }

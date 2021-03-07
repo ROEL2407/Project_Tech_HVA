@@ -1,8 +1,7 @@
-<main>
     <section id="chat">
         <section id="result">
-            <p>You answered answer1</p>
-            <p>Name answered answer1</p>
+            <p>Jij antwoordde {{ lastItem }}</p>
+            <p>Maaike antwoordde {{ lastItem }}</p>
         </section>
         <section class="chat_msg" id="msg1"><p>Hey! hoe gaat het?</p></section>
         <section class="chat_msg" id="msg2"><p>Goed! en met jou?</p></section>
@@ -10,38 +9,26 @@
     <section id="popUpWrapper">
         <section id="popUp">
             <a href="#"><i class="fa fa-chevron-left"></i>
-                <p>Back to all matches</p>
+                <p>Terug naar matches</p>
             </a>
             <section id="questions">
-                <p>Pick a question you like to answer with your match:</p>
-                <section class="quest" id="q1">
-                    <p>{{ vraagjes.1.vraag }}</p>
+                <p>Kies een vraag om samen met je match te beantwoorden:</p>
+                {{#each randVraag }}
+                <section class="quest" id="vr_id{{this.id}}">
+                    <p>{{ this.vraag }}</p>
                 </section>
-                <section class="quest" id="q2">
-                    <p>question</p>
-                </section>
-                <section class="quest" id="q3">
-                    <p>question</p>
-                </section>
-                <section class="quest" id="q4">
-                    <p>question</p>
-                </section>
-                <section class="quest" id="q5">
-                    <p>question</p>
-                </section>
+                {{/each}}
+
             </section>
-            <section id="answers">
-                <h2>question</h2>
-                <form action="post">
-                    <fieldset>
-                        <label for="ans1">Answer1</label><input type="radio" name="answer1" id="ans1">
-                    </fieldset>
-                    <fieldset>
-                        <label for="ans2">Answer2</label><input type="radio" name="answer1" id="ans2">
-                    </fieldset>
-                    <input type="submit" value="Confirm answer" id="sendAnswer">
-                </form>
-            </section>
+                {{#each randVraag }}
+                    <section class="answers invisible">
+                        <h3>{{ this.vraag }}</h3>
+                        <form action="" method="POST">
+                            <input type="radio" name="answer" id="ans1" value="{{this.ant1}}"><label>&nbsp;{{this.ant1}}</label>
+                            <input type="radio" name="answer" id="ans2" value="{{this.ant2}}"><label>&nbsp;{{this.ant2}}</label>
+                            <input type="submit" value="Confirm answer" id="sendAnswer">
+                        </form>
+                    </section>
+                {{/each}}
         </section>
     </section>
-</main>
