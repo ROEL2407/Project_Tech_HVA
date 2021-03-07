@@ -3,18 +3,17 @@ const exphbs = require('express-handlebars');
 const app = express();
 const port = 3000;
 var bodyParser = require('body-parser');
-const slug = require('slug');
 const dotenv = require('dotenv').config();
 const { MongoClient } = require('mongodb');
 app.use(express.json());
 
 
 let db = null;
-//function connectDB
+// function connectDB
 async function connectDB() {
   // Get URI from .env file
   const uri = process.env.DB_URI;
-  // make connection to db
+  // make connection to the db
   const options = { useUnifiedTopology: true };
   const client = new MongoClient(uri,options);
   await client.connect();
@@ -22,14 +21,15 @@ async function connectDB() {
 }
 connectDB()
 .then(() => {
-  //if the connection was successfull, show this message
+  // if the connection was successfull, show:
   console.log("we have landed");
 })
 .catch ( error => {
-  //if the connection fails, send this message
+  // if the connection fails, send error message
   console.log(error);
 });
 
+// a little array to mimic real accounts
 const person = [
   {"id": 14256, "naam": "Bert"},
   {"id": 987643, "naam": "Maaike"}
@@ -57,8 +57,6 @@ app.get('/', async (req, res) => {
       randVraag.push(vraagHolder);
     }
   }
-
-
   res.render('home', {randVraag});
 });
 
@@ -68,17 +66,17 @@ app.post('/', async (req,res) => {
   console.log(req.body.answer);
   await db.collection('matches').insertOne(questAndAnswer)
   .then(function() { 
+    // redirects the user to a new view
     res.redirect('/chat');
 }).catch(function(error){
     res.send(error);
 })
-
-
   res.render('home', {questAndAnswer});
 });
 
 
 app.get('/chat', async (req, res) => {
+  // takes the last match and sets it into an array
   var lastItem = await db.collection('matches').find().limit(1).sort({$natural:-1}).toArray();
 res.render('chat', {lastItem});
 });
@@ -88,9 +86,10 @@ res.render('chat', {lastItem});
 });
 
 app.post('/vragen', async (req,res) => {
+  // takes the info given in the view form and places it into the database
   const Addvragen = {"vraag": req.body.vraag, "ant1": req.body.answer1, "ant2": req.body.answer2};
   await db.collection('questions').insertOne(Addvragen);
-  res.render('add', {Addvragen, layout: 'addlayout.handlebars', Succesmessage: "Je vraag is aangemaakt!"})
+  res.render('add', {Addvragen, layout: 'addlayout.handlebars'})
 });
 
 app.use(function (req, res) {
