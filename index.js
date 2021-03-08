@@ -96,6 +96,6 @@ app.use(function (req, res) {
   res.status(404).send("Sorry this page doesn't exist, try another one");
 });
 
-app.listen(port, () => {
-  console.log(`localhost app listening on port ${port}!`);
+app.listen(process.env.PORT || 3000, () => {
+  console.log('Express web app on localhost:3000');
 });
